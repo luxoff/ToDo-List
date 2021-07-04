@@ -3,4 +3,5 @@
     <string name="example_text">Example text</string>
     <string name="task_name">Task name</string>
     <string name="priority_task">Priority task</string>
+    <string name="fab_content_description">floating action button for \'Add task\' action</string>
 </resources>

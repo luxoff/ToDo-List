@@ -2,9 +2,11 @@ package com.appsflow.todolist.ui.tasks
 
 import androidx.lifecycle.ViewModel
 import com.appsflow.todolist.data.TaskDao
-//hilt fix ViewModelInject annotation
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class TasksViewModel  constructor(
+@HiltViewModel
+class TasksViewModel @Inject constructor(
     private val taskDao: TaskDao
 ) : ViewModel() {
 }
