@@ -5,4 +5,10 @@
     <string name="priority_task">Priority task</string>
     <string name="fab_content_description">floating action button for \'Add task\' action</string>
     <string name="priority_flag">priority flag</string>
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
+    <string name="sort_by_name">Sort by name</string>
+    <string name="sort_by_creation_date">Sort by creation date</string>
+    <string name="hide_completed">Hide completed</string>
+    <string name="delete_all_completed">Delete all completed</string>
 </resources>
