@@ -3,8 +3,9 @@ package com.appsflow.todolist.ui.tasks
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +36,8 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         viewModel.tasks.observe(viewLifecycleOwner){
             tasksAdapter.submitList(it)
         }
+
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -44,8 +47,28 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         val searchView = searchItem.actionView as SearchView
 
         searchView.onQueryTextChanged{
-            //TODO:update search query
+            viewModel.searchQuery.value = it
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.submenu_action_sort_by_name -> {
+                true
+            }
+            R.id.submenu_action_sort_by_date_created -> {
+                true
+            }
+            R.id.menu_action_hide_completed -> {
+                item.isChecked = !item.isChecked
+
+                true
+            }
+            R.id.menu_action_delete_all_completed -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
