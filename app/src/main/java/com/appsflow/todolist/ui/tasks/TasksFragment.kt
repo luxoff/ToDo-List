@@ -33,7 +33,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
                 setHasFixedSize(true)
             }
         }
-        viewModel.tasks.observe(viewLifecycleOwner){
+        viewModel.tasks.observe(viewLifecycleOwner) {
             tasksAdapter.submitList(it)
         }
 
@@ -46,23 +46,25 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         val searchItem = menu.findItem(R.id.menu_action_search)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.onQueryTextChanged{
+        searchView.onQueryTextChanged {
             viewModel.searchQuery.value = it
         }
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.submenu_action_sort_by_name -> {
+                viewModel.sortOrder.value = SortOrder.BY_NAME
                 true
             }
             R.id.submenu_action_sort_by_date_created -> {
+                viewModel.sortOrder.value = SortOrder.BY_DATE
                 true
             }
             R.id.menu_action_hide_completed -> {
                 item.isChecked = !item.isChecked
-
+                viewModel.hideCompletedTasks.value = item.isChecked
                 true
             }
             R.id.menu_action_delete_all_completed -> {

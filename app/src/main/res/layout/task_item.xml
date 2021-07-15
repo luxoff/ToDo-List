@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
     android:paddingLeft="8dp"
+    android:paddingTop="8dp"
     android:paddingRight="8dp"
     android:paddingBottom="2dp">
 
@@ -32,11 +32,11 @@
         android:id="@+id/iv_priority_flag"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignTop="@id/tv_task_title"
         android:layout_alignBottom="@id/tv_task_title"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="15dp"
-        android:src="@drawable/ic_flags"
-        android:contentDescription="@string/priority_flag" />
+        android:contentDescription="@string/priority_flag"
+        android:src="@drawable/ic_flags" />
 
 </RelativeLayout>
