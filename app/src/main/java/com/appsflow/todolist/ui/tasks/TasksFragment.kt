@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appsflow.todolist.R
 import com.appsflow.todolist.data.SortOrder
+import com.appsflow.todolist.data.Task
 import com.appsflow.todolist.databinding.FragmentTasksBinding
 import com.appsflow.todolist.utils.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TasksFragment : Fragment(R.layout.fragment_tasks) {
+class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClickListener {
 
     private val viewModel: TasksViewModel by viewModels()
 
@@ -28,7 +29,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
 
         val binding = FragmentTasksBinding.bind(view)
 
-        val tasksAdapter = TasksAdapter()
+        val tasksAdapter = TasksAdapter(this)
 
         binding.apply {
             rvTasks.apply {
@@ -54,7 +55,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             viewModel.searchQuery.value = it
         }
 
-        viewLifecycleOwner.lifecycleScope.launch{
+        viewLifecycleOwner.lifecycleScope.launch {
             menu.findItem(R.id.menu_action_hide_completed).isChecked =
                 viewModel.prefFlow.first().hideCompleted
         }
@@ -80,5 +81,13 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onItemClick(task: Task) {
+        viewModel.onTaskClicked(task)
+    }
+
+    override fun onCheckboxClick(task: Task, isChecked: Boolean) {
+        viewModel.onTaskCheckboxChecked(task, isChecked)
     }
 }

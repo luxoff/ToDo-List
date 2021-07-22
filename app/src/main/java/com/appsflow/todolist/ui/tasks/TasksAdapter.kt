@@ -9,10 +9,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.appsflow.todolist.data.Task
 import com.appsflow.todolist.databinding.TaskItemBinding
 
-class TasksAdapter : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallback()) {
+class TasksAdapter(private val listener: OnItemClickListener) : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallback()) {
 
-    class TasksViewHolder(private val binding: TaskItemBinding) :
+    inner class TasksViewHolder(private val binding: TaskItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                root.setOnClickListener{
+                    val position = adapterPosition
+                    if(position != RecyclerView.NO_POSITION){
+                        val task = getItem(position)
+                        listener.onItemClick(task)
+                    }
+                }
+                checkboxForTask.setOnClickListener{
+                    val position = adapterPosition
+                    if(position != RecyclerView.NO_POSITION){
+                        val task = getItem(position)
+                        listener.onCheckboxClick(task, checkboxForTask.isChecked)
+                    }
+                }
+            }
+        }
+
         fun bind(task: Task) {
             binding.apply {
                 tvTaskTitle.text = task.title
@@ -30,6 +50,11 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.TasksViewHolder>(DiffCallbac
         )
 
         return TasksViewHolder(binding)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(task: Task)
+        fun onCheckboxClick(task: Task, isChecked: Boolean)
     }
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
