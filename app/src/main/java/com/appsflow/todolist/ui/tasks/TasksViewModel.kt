@@ -1,12 +1,12 @@
 package com.appsflow.todolist.ui.tasks
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.appsflow.todolist.data.PreferencesManager
 import com.appsflow.todolist.data.SortOrder
 import com.appsflow.todolist.data.Task
 import com.appsflow.todolist.data.TaskDao
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -20,10 +20,11 @@ import javax.inject.Inject
 @HiltViewModel
 class TasksViewModel @Inject constructor(
     private val taskDao: TaskDao,
-    private val preferencesManager: PreferencesManager
+    private val preferencesManager: PreferencesManager,
+    private val state: SavedStateHandle
 ) : ViewModel() {
 
-    val searchQuery = MutableStateFlow("")
+    val searchQuery = state.getLiveData("searchQuery", "")
     val prefFlow = preferencesManager.preferencesFlow
 
     private val tasksEventChannel = Channel<TasksEvent>()
@@ -31,7 +32,7 @@ class TasksViewModel @Inject constructor(
 
     @ExperimentalCoroutinesApi
     private val taskFlow = combine(
-        searchQuery,
+        searchQuery.asFlow(),
         prefFlow
     ) { query, filterPrefs ->
         Pair(query, filterPrefs)
@@ -47,8 +48,8 @@ class TasksViewModel @Inject constructor(
         preferencesManager.updateHideCompleted(hideCompleted)
     }
 
-    fun onTaskClicked(task: Task) {
-
+    fun onTaskClicked(task: Task) = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.NavigateToEditTaskScreen(task))
     }
 
     fun onTaskCheckboxChecked(task: Task, isChecked: Boolean) = viewModelScope.launch {
@@ -64,10 +65,16 @@ class TasksViewModel @Inject constructor(
         taskDao.insert(task)
     }
 
+    fun onAddNewTaskClick() = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.NavigateToAddTaskScreen)
+    }
+
     @ExperimentalCoroutinesApi
     val tasks = taskFlow.asLiveData()
 
     sealed class TasksEvent {
         data class ShowUndoDeleteTaskMessage(val task: Task) : TasksEvent()
+        object NavigateToAddTaskScreen : TasksEvent()
+        data class NavigateToEditTaskScreen(val task: Task) : TasksEvent()
     }
 }
