@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/tasksFragment2"
         android:name="com.appsflow.todolist.ui.tasks.TasksFragment"
-        android:label="fragment_tasks"
-        tools:layout="@layout/fragment_tasks" >
+        android:label="Tasks"
+        tools:layout="@layout/fragment_tasks">
         <action
             android:id="@+id/action_tasksFragment2_to_editTaskFragment"
             app:destination="@id/editTaskFragment" />
@@ -16,12 +16,15 @@
     <fragment
         android:id="@+id/editTaskFragment"
         android:name="com.appsflow.todolist.ui.edittask.EditTaskFragment"
-        android:label="EditTaskFragment"
+        android:label="{screen_title}"
         tools:layout="@layout/fragment_edit_task">
         <argument
             android:name="task"
             app:argType="com.appsflow.todolist.data.Task"
             app:nullable="true"
             android:defaultValue="@null" />
+        <argument
+            android:name="screen_title"
+            app:argType="string" />
     </fragment>
 </navigation>
