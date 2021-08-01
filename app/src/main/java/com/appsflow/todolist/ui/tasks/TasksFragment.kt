@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -67,6 +68,12 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClic
                 viewModel.onAddNewTaskClick()
             }
         }
+
+        setFragmentResultListener("add_edit_task_request") { _, bundle ->
+            val result = bundle.getInt("add_edt_task_result")
+            viewModel.onAddEditResult(result)
+        }
+
         viewModel.tasks.observe(viewLifecycleOwner) {
             tasksAdapter.submitList(it)
         }
@@ -85,12 +92,21 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClic
                             }.show()
                     }
                     is TasksViewModel.TasksEvent.NavigateToAddTaskScreen -> {
-                        val action = TasksFragmentDirections.actionTasksFragment2ToEditTaskFragment(null, "Add Task")
+                        val action = TasksFragmentDirections.actionTasksFragment2ToEditTaskFragment(
+                            null,
+                            "Add Task"
+                        )
                         findNavController().navigate(action)
                     }
                     is TasksViewModel.TasksEvent.NavigateToEditTaskScreen -> {
-                        val action = TasksFragmentDirections.actionTasksFragment2ToEditTaskFragment(event.task, "Edit Task")
+                        val action = TasksFragmentDirections.actionTasksFragment2ToEditTaskFragment(
+                            event.task,
+                            "Edit Task"
+                        )
                         findNavController().navigate(action)
+                    }
+                    is TasksViewModel.TasksEvent.ShowTaskSavedConfirmationMessage -> {
+                        Snackbar.make(requireView(), event.msg, Snackbar.LENGTH_SHORT).show()
                     }
                 }.exhaustive
             }

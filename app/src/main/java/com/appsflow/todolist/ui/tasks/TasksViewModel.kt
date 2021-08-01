@@ -5,6 +5,8 @@ import com.appsflow.todolist.data.PreferencesManager
 import com.appsflow.todolist.data.SortOrder
 import com.appsflow.todolist.data.Task
 import com.appsflow.todolist.data.TaskDao
+import com.appsflow.todolist.ui.main.ADD_TASK_RESULT_OK
+import com.appsflow.todolist.ui.main.EDIT_TASK_RESULT_OK
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -69,6 +71,17 @@ class TasksViewModel @Inject constructor(
         tasksEventChannel.send(TasksEvent.NavigateToAddTaskScreen)
     }
 
+    fun onAddEditResult(result: Int) {
+        when (result) {
+            ADD_TASK_RESULT_OK -> showTaskSavedMsg("A new task has been created!")
+            EDIT_TASK_RESULT_OK -> showTaskSavedMsg("Task has been updated!")
+        }
+    }
+
+    private fun showTaskSavedMsg(text: String) = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.ShowTaskSavedConfirmationMessage(text))
+    }
+
     @ExperimentalCoroutinesApi
     val tasks = taskFlow.asLiveData()
 
@@ -76,5 +89,6 @@ class TasksViewModel @Inject constructor(
         data class ShowUndoDeleteTaskMessage(val task: Task) : TasksEvent()
         object NavigateToAddTaskScreen : TasksEvent()
         data class NavigateToEditTaskScreen(val task: Task) : TasksEvent()
+        data class ShowTaskSavedConfirmationMessage(val msg: String) : TasksEvent()
     }
 }
