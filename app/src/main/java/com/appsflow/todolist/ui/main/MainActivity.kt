@@ -3,6 +3,8 @@ package com.appsflow.todolist.ui.main
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+
 }
 
 const val ADD_TASK_RESULT_OK = Activity.RESULT_FIRST_USER

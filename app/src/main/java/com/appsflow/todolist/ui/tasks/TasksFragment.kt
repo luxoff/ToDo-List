@@ -1,10 +1,8 @@
 package com.appsflow.todolist.ui.tasks
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -128,7 +126,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TasksAdapter.OnItemClic
         searchView = searchItem.actionView as SearchView
 
         val pendingQuery = viewModel.searchQuery.value
-        if(pendingQuery != null && pendingQuery.isNotEmpty()){
+        if (pendingQuery != null && pendingQuery.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(pendingQuery, false)
         }
