@@ -15,4 +15,5 @@ class AuthStartFragment : Fragment(R.layout.fragment_auth_start) {
 
         val binding = FragmentAuthStartBinding.bind(view)
     }
+
 }

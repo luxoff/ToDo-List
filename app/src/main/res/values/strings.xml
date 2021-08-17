@@ -15,4 +15,6 @@
     <string name="todo_list">ToDo List</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="sign_in_with_google">Sign In with google</string>
+    <string name="sign_in_with_email">Sign In with Email</string>
 </resources>
