@@ -26,7 +26,6 @@
         android:layout_below="@id/tv_app_name"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:ellipsize="none"
         android:fontFamily="@font/font_family_atkinson_hyperlegible"
         android:gravity="center"
         android:text="Get your things done.\nAnywhere. Anytime."
@@ -73,5 +72,20 @@
         app:iconPadding="20dp"
         app:iconSize="29dp"
         app:iconTint="@null" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sign_in_skip"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:elevation="3dp"
+        android:layout_below="@id/btn_sign_in_with_email"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/font_family_atkinson_hyperlegible"
+        android:text="@string/sign_in_later"
+        android:textColor="#156ACF"
+        android:textStyle="normal"
+        />
 
 </RelativeLayout>

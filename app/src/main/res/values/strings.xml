@@ -17,4 +17,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_in_with_google">Sign In with google</string>
     <string name="sign_in_with_email">Sign In with Email</string>
+    <string name="sign_in_later">SIGN IN LATER</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="repeat_password">Repeat Password</string>
 </resources>
