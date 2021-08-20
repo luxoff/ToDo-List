@@ -32,10 +32,10 @@ class EditTaskViewModel @Inject constructor(
         }
 
         if (task != null) {
-            val updatedTask = task.copy(title = taskTitle, isPriority = taskPriority)
+            val updatedTask = task.copy(title = taskTitle, isPriority = taskPriority, created = System.currentTimeMillis())
             updateTask(updatedTask)
         } else {
-            val newTask = Task(title = taskTitle, isPriority = taskPriority)
+            val newTask = Task(title = taskTitle, isPriority = taskPriority, created = System.currentTimeMillis())
             createTask(newTask)
         }
     }
@@ -67,6 +67,9 @@ class EditTaskViewModel @Inject constructor(
             field = value
             state.set("taskPriority", value)
         }
+
+    val lastChangedDateFormatted: String =
+        (state.get<String>("dateFormatted") ?: task?.createdDateFormatted ?: "")
 
     sealed class AddEditTaskEvent {
         data class ThrowInvalidInputMessage(val msg: String) : AddEditTaskEvent()

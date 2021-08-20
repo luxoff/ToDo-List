@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_family_atkinson_hyperlegible"
-        android:text="Sign Up with Email"
+        android:text="@string/sign_up_with_email"
         android:textColor="#262627"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_family_atkinson_hyperlegible"
-        android:text="Please, type in your email and password. Remember it."
+        android:text="@string/please_type_in_your_email_and_password_remember_it"
         android:textColor="#262627"
         android:textSize="24sp"
         android:textStyle="normal"
@@ -57,14 +57,14 @@
 
     <EditText
         android:id="@+id/et_password_repeat_input"
-        android:layout_below="@+id/et_password_input"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/et_password_input"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:hint="@string/repeat_password"
-        android:textSize="19sp"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textSize="19sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_up"
@@ -77,7 +77,7 @@
         android:layout_centerInParent="true"
         android:backgroundTint="#EC4639"
         android:fontFamily="@font/font_family_atkinson_hyperlegible"
-        android:text="@string/sign_in"
+        android:text="@string/sign_up"
         android:textColor="#FFFFFF"
         android:textStyle="normal" />
 

@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/task_name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:autofillHints="Task name" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/checkbox_is_priority"
@@ -24,6 +25,31 @@
             android:layout_height="wrap_content"
             android:text="@string/priority_task"
             android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:id="@+id/tv_last_change_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_change"
+                android:textColor="#A1A1A1"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_date_stamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginStart="12dp"
+                android:textColor="#A1A1A1"
+                android:textSize="13sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

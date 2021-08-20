@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_family_atkinson_hyperlegible"
-        android:text="To-Do List App"
+        android:text="@string/to_do_list_app"
         android:textColor="#262627"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/font_family_atkinson_hyperlegible"
         android:gravity="center"
-        android:text="Get your things done.\nAnywhere. Anytime."
+        android:text="@string/get_your_things_done_nanywhere_anytime"
         android:textColor="#262627"
         android:textSize="25sp"
         android:textStyle="normal" />

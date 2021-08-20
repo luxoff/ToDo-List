@@ -15,7 +15,6 @@ import com.appsflow.todolist.utils.exhaustive
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EditTaskFragment : Fragment(R.layout.fragment_edit_task) {
@@ -28,6 +27,7 @@ class EditTaskFragment : Fragment(R.layout.fragment_edit_task) {
         binding.apply {
             etTitleName.setText(viewModel.taskTitle)
             checkboxIsPriority.isChecked = viewModel.taskPriority
+            tvDateStamp.text = viewModel.lastChangedDateFormatted
             checkboxIsPriority.jumpDrawablesToCurrentState()
 
             etTitleName.addTextChangedListener {

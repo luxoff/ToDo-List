@@ -13,7 +13,6 @@
     <string name="delete_all_completed">Delete all completed</string>
     <string name="task_deleted">Task deleted</string>
     <string name="todo_list">ToDo List</string>
-    <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in_with_google">Sign In with google</string>
     <string name="sign_in_with_email">Sign In with Email</string>
@@ -21,5 +20,11 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
-    <string name="repeat_password">Repeat Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="to_do_list_app">To-Do List App</string>
+    <string name="get_your_things_done_nanywhere_anytime">Get your things done.\nAnywhere. Anytime.</string>
+    <string name="please_type_in_your_email_and_password_to_login">Please, type in your email and password to login.</string>
+    <string name="last_change">Last change:</string>
+    <string name="sign_up_with_email">Sign Up with Email</string>
+    <string name="please_type_in_your_email_and_password_remember_it">Please, type in your email and password. Remember it.</string>
 </resources>
