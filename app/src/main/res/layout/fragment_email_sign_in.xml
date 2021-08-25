@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.signin.EmailSignInFragment"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:id="@+id/tv_sign_in_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_family_atkinson_hyperlegible"
+        android:text="@string/sign_in_with_email"
+        android:textColor="#262627"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"/>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_family_atkinson_hyperlegible"
+        android:text="@string/please_type_in_your_email_and_password_to_login"
+        android:textColor="#262627"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_sign_in_text"
+        android:layout_marginTop="25dp"/>
+
+    <EditText
+        android:id="@+id/et_email_input"
+        android:layout_below="@+id/tv_description"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="130dp"
+        android:hint="@string/email"
+        android:textSize="19sp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/et_password_input"
+        android:layout_below="@+id/et_email_input"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:hint="@string/password"
+        android:textSize="19sp"
+        android:inputType="textPassword" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sign_in"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:elevation="3dp"
+        android:layout_below="@id/et_password_input"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        android:backgroundTint="#EC4639"
+        android:fontFamily="@font/font_family_atkinson_hyperlegible"
+        android:text="@string/sign_in"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal" />
+
+</RelativeLayout>
