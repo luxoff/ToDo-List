@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/tasksFragment2">
+    app:startDestination="@id/authStartFragment">
     <fragment
         android:id="@+id/tasksFragment2"
         android:name="com.appsflow.todolist.ui.tasks.TasksFragment"
@@ -34,4 +34,48 @@
     <action
         android:id="@+id/action_global_deleteAllCompletedDialogFragment"
         app:destination="@id/deleteAllCompletedDialogFragment" />
+    <fragment
+        android:id="@+id/emailSignUpFragment"
+        android:name="com.appsflow.todolist.ui.auth.signup.EmailSignUpFragment"
+        android:label="{screen_title}"
+        tools:layout="@layout/fragment_email_sign_up">
+        <action
+            android:id="@+id/action_emailSignUpFragment_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
+        <argument
+            android:name="screen_title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailSignInFragment"
+        android:name="com.appsflow.todolist.ui.auth.signin.EmailSignInFragment"
+        android:label="{screen_title}"
+        tools:layout="@layout/fragment_email_sign_in">
+        <action
+            android:id="@+id/action_emailSignInFragment_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
+        <argument
+            android:name="screen_title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/authStartFragment"
+        android:name="com.appsflow.todolist.ui.auth.start.AuthStartFragment"
+        android:label="Authentication"
+        tools:layout="@layout/fragment_auth_start">
+        <action
+            android:id="@+id/action_authStartFragment_to_emailSignUpFragment"
+            app:destination="@id/emailSignUpFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_authStartFragment_to_emailSignInFragment"
+            app:destination="@id/emailSignInFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

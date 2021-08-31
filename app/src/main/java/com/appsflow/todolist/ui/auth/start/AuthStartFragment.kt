@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.appsflow.todolist.R
 import com.appsflow.todolist.databinding.FragmentAuthStartBinding
+import com.appsflow.todolist.ui.tasks.TasksFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,12 +31,18 @@ class AuthStartFragment : Fragment(R.layout.fragment_auth_start) {
                     .setTitle("Already have an account?")
                     .setCancelable(true)
                     .setNegativeButton("No, sign up") { _, _ ->
-                        //TODO: navigate to email sign up screen
+                        val action = AuthStartFragmentDirections.actionAuthStartFragmentToEmailSignUpFragment(
+                            "Sign Up with Email"
+                        )
+                        findNavController().navigate(action)
                     }
                     .setPositiveButton("Yes, log in") { _, _ ->
-                        //TODO: navigate to email sign in screen
+                        val action = AuthStartFragmentDirections.actionAuthStartFragmentToEmailSignInFragment(
+                            "Sign In with Email"
+                        )
+                        findNavController().navigate(action)
                     }
-                    .create()
+                    .create().show()
             }
         }
     }
