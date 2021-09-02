@@ -24,7 +24,7 @@ class EmailSignUpFragment : Fragment(R.layout.fragment_email_sign_up) {
 
         val binding = FragmentEmailSignUpBinding.bind(view)
         binding.apply {
-            btnSignUp.setOnClickListener { _ ->
+            btnSignUp.setOnClickListener {
                 viewModel.signupWithEmailAndPassword(etEmailInput.text.toString().trim(),
                     etPasswordInput.text.toString().trim(),
                     etPasswordRepeatInput.text.toString().trim())

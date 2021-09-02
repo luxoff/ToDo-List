@@ -21,7 +21,7 @@ class EmailSignUpViewModel @Inject constructor(
     private var auth: FirebaseAuth = Firebase.auth
     private var currentUser = auth.currentUser
 
-    private val signUpEmailEventChannel = Channel<EmailSignUpViewModel.SignUpEmailEvent>()
+    private val signUpEmailEventChannel = Channel<SignUpEmailEvent>()
     val signUpEmailEvent = signUpEmailEventChannel.receiveAsFlow()
 
     fun signupWithEmailAndPassword(email: String, password: String, repeatPassword: String){
@@ -35,12 +35,16 @@ class EmailSignUpViewModel @Inject constructor(
                                 currentUser?.let { onSignUpSuccessful(it) }
                             }
                             else{
-                                val msg: String = "Sign Up failed!\n${task.exception}"
+                                val msg: String = "Sign Up failed!\nInfo: ${task.exception}"
                                 onSignUpFailed(msg)
                             }
                         }
                 } else{ onSignUpFailed("Passwords don't match!") }
             } else {onSignUpFailed("Email and password shouldn't be empty")}
+        }
+        else{
+            val msg = "You are already signed in!"
+            onSignUpFailed(msg)
         }
     }
 
